@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日報管理システム</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>日報管理システム</h1>
+            <nav>
+                <button id="btnShowList" class="nav-btn active">日報一覧</button>
+                <button id="btnShowForm" class="nav-btn">新規作成</button>
+                <button id="btnExport" class="nav-btn">CSVエクスポート</button>
+            </nav>
+        </header>
+
+        <main>
+            <section id="listSection" class="section active">
+                <div class="filter-container">
+                    <h2>検索フィルター</h2>
+                    <div class="filter-group">
+                        <label>
+                            開始日: <input type="date" id="filterStartDate">
+                        </label>
+                        <label>
+                            終了日: <input type="date" id="filterEndDate">
+                        </label>
+                        <label>
+                            社員ID: <input type="text" id="filterEmployeeId" placeholder="社員ID">
+                        </label>
+                        <label>
+                            部署:
+                            <select id="filterDepartment">
+                                <option value="">全部署</option>
+                                <option value="営業部">営業部</option>
+                                <option value="開発部">開発部</option>
+                                <option value="総務部">総務部</option>
+                                <option value="経理部">経理部</option>
+                                <option value="人事部">人事部</option>
+                            </select>
+                        </label>
+                        <button id="btnFilter" class="btn btn-primary">検索</button>
+                        <button id="btnClearFilter" class="btn btn-secondary">クリア</button>
+                    </div>
+                </div>
+
+                <div class="report-list" id="reportList">
+                </div>
+            </section>
+
+            <section id="formSection" class="section">
+                <h2 id="formTitle">日報作成</h2>
+                <form id="reportForm">
+                    <input type="hidden" id="reportId">
+                    
+                    <div class="form-group">
+                        <label for="reportDate">日付 <span class="required">*</span></label>
+                        <input type="date" id="reportDate" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="employeeName">氏名 <span class="required">*</span></label>
+                            <input type="text" id="employeeName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeId">社員ID <span class="required">*</span></label>
+                            <input type="text" id="employeeId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="department">部署 <span class="required">*</span></label>
+                            <select id="department" required>
+                                <option value="">選択してください</option>
+                                <option value="営業部">営業部</option>
+                                <option value="開発部">開発部</option>
+                                <option value="総務部">総務部</option>
+                                <option value="経理部">経理部</option>
+                                <option value="人事部">人事部</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="workContent">業務内容 <span class="required">*</span></label>
+                        <textarea id="workContent" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="achievements">本日の成果</label>
+                        <textarea id="achievements" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issues">課題・問題点</label>
+                        <textarea id="issues" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tomorrowPlan">明日の予定</label>
+                        <textarea id="tomorrowPlan" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="remarks">備考</label>
+                        <textarea id="remarks" rows="2"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="button" id="btnCancel" class="btn btn-secondary">キャンセル</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
